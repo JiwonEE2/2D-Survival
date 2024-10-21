@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemyGenerator : MonoBehaviour
 {
 	public Enemy enemyPrefab;
 	public float duration = 10f;
+	public float randomCircleSize = 10f;
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -20,12 +23,11 @@ public class EnemyGenerator : MonoBehaviour
 
 	private IEnumerator GenerateEnemy(float duration)
 	{
-		for (int i = 0; i < 10; i++)
+		while(true)
 		{
 			yield return new WaitForSeconds(duration);
-			Enemy enemy = Instantiate(enemyPrefab, new Vector2(0, 10), Quaternion.identity);
-
+			Vector2 randomPosition = Random.insideUnitCircle.normalized * randomCircleSize;
+			Enemy enemy = Instantiate(enemyPrefab, randomPosition, Quaternion.identity);
 		}
-
 	}
 }

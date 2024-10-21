@@ -17,7 +17,6 @@ public class Enemy : MonoBehaviour
 	// Getter/Setter
 
 	public Transform target;      // 추적할 대상
-
 	public Image hpBar;
 
 	private void Start()

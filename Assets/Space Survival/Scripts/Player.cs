@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-	public float hp;          // 체력
-	public float damage;      // 공격력
-	public float moveSpeed;   // 이동속도
+	public float hp = 100f;        // 체력
+	public float damage = 5f;      // 공격력
+	public float moveSpeed = 5f;   // 이동속도
 
-	public GameObject projectilePrefab;   // 투사체 프리팹
+	public Projectile projectilePrefab;   // 투사체 프리팹
 
 	// Start is called before the first frame update
 	void Start()
@@ -50,8 +50,9 @@ public class Player : MonoBehaviour
 	/// </summary>
 	public void Fire(Vector2 dir)
 	{
-		GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+		Projectile projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
 
 		projectile.transform.up = dir;
+		projectile.damage = damage;
 	}
 }

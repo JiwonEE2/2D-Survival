@@ -22,7 +22,8 @@ public class Enemy : MonoBehaviour
 
 	private void Start()
 	{
-		target = GameObject.Find("Player").transform;
+		GameManager.Instance.enemies.Add(this);   // 적 리스트에 자기 자신을 추가
+		target = GameManager.Instance.player.transform;
 		maxHp = hp;
 	}
 
@@ -47,13 +48,23 @@ public class Enemy : MonoBehaviour
 
 		if (hp <= 0) //으앙 쥬금
 		{
-			GameObject.Find("Player").GetComponent<Player>().killCount++;
-			Destroy(gameObject);
+			Die();
 		}
 	}
 
+	private void Die()
+	{
+		GameManager.Instance.enemies.Remove(this);
+		GameManager.Instance.player.killCount++;
+		Destroy(gameObject);
+	}
+
+	public float damageInterval;    // 데미지 간격
+	private float preDamageTime;		// 이전에 데미지를 준 시간(Time.time)
+
 	private void OnCollisionStay2D(Collision2D collision)
 	{
+		// 플레이어에게 데미지 주는 간격 조정하기
 		if (collision.collider.CompareTag("Player"))
 		{
 			collision.collider.GetComponent<Player>().TakeDamage(damage);

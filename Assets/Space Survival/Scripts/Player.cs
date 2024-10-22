@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
 	void Start()
 	{
 		maxHp = hp;   // 최대 체력 지정
+		GameManager.Instance.player = this;
 	}
 
 	void Update()
@@ -39,11 +40,31 @@ public class Player : MonoBehaviour
 
 		Vector2 moveDir = new Vector2(x, y);
 
-		Vector2 mousePos = Input.mousePosition;
-		Vector2 mouseScreenPos = Camera.main.ScreenToWorldPoint(mousePos);
-		Vector2 fireDir = mouseScreenPos - (Vector2)transform.position;
-
+		// 마우스 위치로 사격 방향을 향해야 할 때
+		//Vector2 mousePos = Input.mousePosition;
+		//Vector2 mouseScreenPos = Camera.main.ScreenToWorldPoint(mousePos);
+		//Vector2 fireDir = mouseScreenPos - (Vector2)transform.position;
 		//Vector3 -> Vector2로 캐스팅 할 때 : z값이 생략
+
+		// 가장 가까운 적을 탐색하여 사격 방향을 정할 때
+		Enemy targetEnemy = null;   // 대상으로 지정된 적
+		float targetDistance = float.MaxValue;    // 대상과의 거리
+		foreach (Enemy enemy in GameManager.Instance.enemies)
+		{
+			float distance = Vector3.Distance(enemy.transform.position, transform.position);
+			if (distance < targetDistance)    // 이전에 비교한 적보다 가까우면
+			{
+				targetDistance = distance;
+				targetEnemy = enemy;
+			}
+
+		}
+		Vector2 fireDir = Vector2.zero;
+		if (targetEnemy != null)
+		{
+			fireDir = targetEnemy.transform.position - transform.position;
+		}
+
 		Move(moveDir);
 
 		if (Input.GetButtonDown("Fire1"))

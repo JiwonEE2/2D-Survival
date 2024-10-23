@@ -83,6 +83,13 @@ public class Enemy : MonoBehaviour
 	private void OnCollisionStay2D(Collision2D collision)
 	{
 		// 플레이어에게 데미지 주는 간격 조정하기
+
+		// 이전에 데미지를 준 시점 + 데미지 간격 = 다음 데미지를 줘야 할 시점
+		if(preDamageTime + damageInterval < Time.time)
+		{
+
+		}
+
 		if (collision.collider.CompareTag("Player"))
 		{
 			collision.collider.GetComponent<Player>().TakeDamage(damage);

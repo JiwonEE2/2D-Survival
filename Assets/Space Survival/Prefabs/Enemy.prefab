@@ -376,7 +376,7 @@ MonoBehaviour:
   damage: 10
   moveSpeed: 3
   hpBar: {fileID: 8411193559293531160}
-  damageInterval: 0
+  damageInterval: 1
 --- !u!1 &4690664931231109834
 GameObject:
   m_ObjectHideFlags: 0

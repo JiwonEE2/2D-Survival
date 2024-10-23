@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+	public int level;   // 레벨
+	public int exp;			// 경험치
+
 	private float maxHp;
 	public float hp = 100f; //체력
 	public float damage = 5f; //공격력
@@ -35,9 +38,10 @@ public class Player : MonoBehaviour
 	{
 		maxHp = hp;   // 최대 체력 지정
 		GameManager.Instance.player = this;
-		
+
 		// 리턴이 있는 함수를 호출할 때, 리턴을 사용하지 않는다면
-		StartCoroutine(FireCoroutine());
+		// 아예 반환을 위한 메모리를 점유하지 않고 함수만 호출
+		_ = StartCoroutine(FireCoroutine());
 	}
 
 	void Update()
@@ -60,6 +64,17 @@ public class Player : MonoBehaviour
 		// 가장 가까운 적을 탐색하여 사격 방향을 정할 때
 		Enemy targetEnemy = null;   // 대상으로 지정된 적
 		float targetDistance = float.MaxValue;    // 대상과의 거리
+
+		if (GameManager.Instance.enemies.Count == 0)
+		{
+			// 발사 절차를 생략
+			isFiring = false;
+		}
+		else
+		{
+			isFiring = true;
+		}
+
 		foreach (Enemy enemy in GameManager.Instance.enemies)
 		{
 			float distance = Vector3.Distance(enemy.transform.position, transform.position);
@@ -91,7 +106,7 @@ public class Player : MonoBehaviour
 		// tail 원상태로 돌아간 뒤에 사라지는 문제 해결을 위함 
 		if (moveDir.magnitude > 0.1f)
 		{
-		// transform.up/right/forward에 방향 벡터를 대입할 때는 방향 벡터의 magnitude를 굳이 1로 제한하지 않아도 된다
+			// transform.up/right/forward에 방향 벡터를 대입할 때는 방향 벡터의 magnitude를 굳이 1로 제한하지 않아도 된다
 			this.moveDir.up = moveDir;
 		}
 		this.fireDir.up = fireDir;
@@ -121,13 +136,19 @@ public class Player : MonoBehaviour
 		projectile.damage = damage;
 	}
 
+	public float fireInterval;
+	public bool isFiring;
+
 	// 자동으로 투사체 발사 코루틴
 	private IEnumerator FireCoroutine()
 	{
 		while (true)
 		{
-			yield return new WaitForSeconds(1f);
-			Fire();
+			yield return new WaitForSeconds(fireInterval);
+			if (isFiring)
+			{
+				Fire();
+			}
 		}
 	}
 

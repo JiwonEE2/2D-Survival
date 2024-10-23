@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
 	public int level = 1;   // 레벨
 	public int exp = 0;     // 경험치
 
+	private int[] levelupSteps = { 100, 200, 300 };
+
 	private float maxHp;
 	public float hp = 100f; //체력
 	public float damage = 5f; //공격력
@@ -20,6 +22,8 @@ public class Player : MonoBehaviour
 	public int killCount = 0;
 	public Text killCountText;
 	public Image hpBarImage;
+	public Text levelText;
+	public Text expText;
 
 	private Transform moveDir;
 	private Transform fireDir;
@@ -37,6 +41,8 @@ public class Player : MonoBehaviour
 	void Start()
 	{
 		maxHp = hp;   // 최대 체력 지정
+		levelText.text = level.ToString();
+		expText.text = exp.ToString();
 		GameManager.Instance.player = this;
 
 		// 리턴이 있는 함수를 호출할 때, 리턴을 사용하지 않는다면
@@ -180,7 +186,10 @@ public class Player : MonoBehaviour
 	// 경험치 습득마다 호출
 	public void GainExp(int exp)
 	{
-		this.exp += exp;		// 습득 경험치 더함
+		this.exp += exp;    // 습득 경험치 더함
+
+		levelText.text = level.ToString();
+		expText.text = this.exp.ToString();
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)

@@ -153,5 +153,21 @@ public class Player : MonoBehaviour
 		//}
 
 		// 2. 만약 특정 클래스를 상속하지 않고, 공통점이 없는 여러 객체들이 경우에 따라 같은 행동을 해야할 경우, Interface를 사용할 수 있다.
+		//if (collision.TryGetComponent<IContactable>(out var contact))
+		//{
+		//	contact.Contact();
+		//	// 부딪힌 객체가 Enemy인지 Item인지조차 모르겠으나 어쨌든 IContactable 인터페이스를 구현했다면 Contact() 함수를 가지고 있으므로 호출할 수 있다.
+		//}
+
+		// 3. 게임오브젝트는 모두 SendMessage를 통해 가지고 있는 컴포넌트의 특정 이름을 가진 함수를 호출하도록 기능을 지원. UnityEngine의 내장 기능
+		collision.SendMessage("Contact", /*this, */SendMessageOptions.DontRequireReceiver);
+		// 문자열 참조이기 때문에 이름 변경 시 오류가 생길 수 있으며, 현재 에너미의 Contact와 item의 Contact는 연관이 없기 때문에 또 item의 Contact의 이름을 바꾸더라도 enemy에서는 안바뀐다.
+
+		// SendMessage 주의점
+		// 1. 문자열로 함수를 호출하므로 함수 이름 변경 또는 오타 발생 시 에러 찾기 힘들다.
+		// 2. 해당 객체에 있는 모든 컴포넌트들이 Contact라는 함수를 가지고 있는 지 탐색을 수행하기 때문에 퍼포먼스가 효율적이라고 보기 힘들다.
+		// 3. 호출할 함수의 파라미터는 0개 또는 1개로 제한됨.
+		// 빠른 개발과 프로토타이핑에서 사용하기는 좋으나, 구조적으로 좋은 방식은 아니므로 팀원이 많은 개발팀이나 일정 규모 이상의 기업에서는 쓰지 않는 편
+		// 마지막 파라미터는 null 일때 무시할 건지 말건지 설정할 수 있다. 그래서 이렇게 최대 3개의 파라미터를 가질 수 있다.
 	}
 }

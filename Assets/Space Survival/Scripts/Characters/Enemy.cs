@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Enemy : MonoBehaviour, IContactable
+public class Enemy : MonoBehaviour
 {
 	//public float maxHp = 10f;//ÇÏ¼ö
 	private float maxHp;
@@ -88,8 +89,9 @@ public class Enemy : MonoBehaviour, IContactable
 		}
 	}
 
-	public void Contact()
-	{
-
-	}
+	//public void Contact()
+	//{
+	//	print("Àû°ú ºÎµúÈû");
+	//	GameManager.Instance.player.TakeDamage(damage);
+	//}
 }

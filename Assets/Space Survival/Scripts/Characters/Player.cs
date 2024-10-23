@@ -67,6 +67,7 @@ public class Player : MonoBehaviour
 			}
 
 		}
+
 		Vector2 fireDir = Vector2.zero;
 		if (targetEnemy != null)
 		{
@@ -83,8 +84,12 @@ public class Player : MonoBehaviour
 		killCountText.text = killCount.ToString();
 		hpBarImage.fillAmount = HpAmount;
 
+		// tail 원상태로 돌아간 뒤에 사라지는 문제 해결을 위함 
+		if (moveDir.magnitude > 0.1f)
+		{
 		// transform.up/right/forward에 방향 벡터를 대입할 때는 방향 벡터의 magnitude를 굳이 1로 제한하지 않아도 된다
-		this.moveDir.up = moveDir;
+			this.moveDir.up = moveDir;
+		}
 		this.fireDir.up = fireDir;
 
 		//print(this.moveDir.up);		// normalized되어 magnitude가 1로 고정된 방향 벡터가 반환됨

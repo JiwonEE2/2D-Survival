@@ -35,6 +35,9 @@ public class Player : MonoBehaviour
 	{
 		maxHp = hp;   // 최대 체력 지정
 		GameManager.Instance.player = this;
+		
+		// 리턴이 있는 함수를 호출할 때, 리턴을 사용하지 않는다면
+		StartCoroutine(FireCoroutine());
 	}
 
 	void Update()
@@ -76,10 +79,11 @@ public class Player : MonoBehaviour
 
 		Move(moveDir);
 
-		if (Input.GetButtonDown("Fire1"))
-		{
-			Fire(fireDir);
-		}
+		// 마우스 좌클릭 또는 왼쪽 ctrl 키로 발사
+		//if (Input.GetButtonDown("Fire1"))
+		//{
+		//	Fire(fireDir);
+		//}
 
 		killCountText.text = killCount.ToString();
 		hpBarImage.fillAmount = HpAmount;
@@ -109,12 +113,22 @@ public class Player : MonoBehaviour
 	/// <summary>
 	/// 투사체를 발사.
 	/// </summary>
-	public void Fire(Vector2 dir)
+	public void Fire()
 	{
 		Projectile projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
 
-		projectile.transform.up = dir;
+		projectile.transform.up = fireDir.up;
 		projectile.damage = damage;
+	}
+
+	// 자동으로 투사체 발사 코루틴
+	private IEnumerator FireCoroutine()
+	{
+		while (true)
+		{
+			yield return new WaitForSeconds(1f);
+			Fire();
+		}
 	}
 
 	public void TakeHeal(float heal)

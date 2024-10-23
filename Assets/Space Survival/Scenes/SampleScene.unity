@@ -1695,6 +1695,7 @@ MonoBehaviour:
   killCount: 0
   killCountText: {fileID: 1550219493}
   hpBarImage: {fileID: 1641803262}
+  tailfireAnimCtrl: {fileID: 114880671}
 --- !u!58 &1966559059
 CircleCollider2D:
   m_ObjectHideFlags: 0

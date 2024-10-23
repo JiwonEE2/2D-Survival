@@ -197,8 +197,7 @@ public class Player : MonoBehaviour
 		{
 			// ·¹º§¾÷
 			level++;
-			this.exp = currentMaxExp;
-			currentMaxExp -= levelupSteps[level];
+			this.exp -= currentMaxExp;
 			if (level < levelupSteps.Length)
 			{
 				currentMaxExp -= levelupSteps[level];

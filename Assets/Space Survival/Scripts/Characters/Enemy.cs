@@ -109,7 +109,9 @@ public class Enemy : MonoBehaviour
 		if (collision.collider.CompareTag("Player"))
 		{
 			collision.collider.GetComponent<Player>().TakeDamage(damage);
-			var particle = Instantiate(impactParticle, collision.contacts[0].point, Quaternion.identity);
+			var particle = Instantiate(impactParticle, collision.GetContact(0).point, Quaternion.identity);
+			particle.Play();
+			Destroy(particle.gameObject, 2f);
 			preDamageTime = Time.time;
 		}
 	}

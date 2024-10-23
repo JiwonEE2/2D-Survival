@@ -21,10 +21,13 @@ public class Player : MonoBehaviour
 	private Transform moveDir;
 	private Transform fireDir;
 
+	private Rigidbody2D rb;
+
 	private void Awake()
 	{
 		moveDir = transform.Find("MoveDir");
 		fireDir = transform.Find("FireDir");
+		rb = GetComponent<Rigidbody2D>();
 	}
 
 	void Start()
@@ -39,6 +42,8 @@ public class Player : MonoBehaviour
 		float y = Input.GetAxis("Vertical");
 
 		Vector2 moveDir = new Vector2(x, y);
+
+		this.moveDir.gameObject.SetActive(moveDir != Vector2.zero);
 
 		// 마우스 위치로 사격 방향을 향해야 할 때
 		//Vector2 mousePos = Input.mousePosition;
@@ -88,7 +93,9 @@ public class Player : MonoBehaviour
 	/// <param name="dir">이동 방향</param>
 	public void Move(Vector2 dir)
 	{
-		transform.Translate(dir * moveSpeed * Time.deltaTime);
+		//transform.Translate(dir * moveSpeed * Time.deltaTime);
+		Vector2 movePos = rb.position + (dir * moveSpeed * Time.fixedDeltaTime);
+		rb.MovePosition(movePos);
 	}
 
 	/// <summary>

@@ -63,7 +63,7 @@ public class Enemy : MonoBehaviour
 	public void Move(Vector2 dir)//dir 값이 커져도 1로 고정을 하고 싶을경우=>normalized
 	{
 		//transform.Translate(dir * moveSpeed * Time.deltaTime);
-		Vector2 movePos = rb.position + (dir * moveSpeed * Time.deltaTime);
+		Vector2 movePos = rb.position + (dir * moveSpeed * Time.fixedDeltaTime);
 		//transform.position = movePos;
 		rb.MovePosition(movePos);
 	}

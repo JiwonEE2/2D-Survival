@@ -123,7 +123,7 @@ public class Player : MonoBehaviour
 		if (hp <= 0)
 		{
 			// 게임 오버 처리
-
+			hp = 0;
 		}
 	}
 

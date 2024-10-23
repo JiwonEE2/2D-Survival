@@ -79,10 +79,13 @@ public class Enemy : MonoBehaviour
 		}
 	}
 
+	int exp = 5;
+
 	public void Die()
 	{
 		GameManager.Instance.enemies.Remove(this);
 		GameManager.Instance.player.killCount++;
+		GameManager.Instance.player.GainExp(exp);
 		Destroy(gameObject);
 	}
 

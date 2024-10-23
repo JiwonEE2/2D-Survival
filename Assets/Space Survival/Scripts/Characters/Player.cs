@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-	public int level;   // 레벨
-	public int exp;			// 경험치
+	public int level = 1;   // 레벨
+	public int exp = 0;     // 경험치
 
 	private float maxHp;
 	public float hp = 100f; //체력
@@ -175,6 +175,12 @@ public class Player : MonoBehaviour
 			// 게임 오버 처리
 			hp = 0;
 		}
+	}
+
+	// 경험치 습득마다 호출
+	public void GainExp(int exp)
+	{
+		this.exp += exp;		// 습득 경험치 더함
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)

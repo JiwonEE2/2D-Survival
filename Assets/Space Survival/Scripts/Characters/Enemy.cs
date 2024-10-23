@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IContactable
 {
 	//public float maxHp = 10f;//하수
 	private float maxHp;
@@ -27,14 +27,26 @@ public class Enemy : MonoBehaviour
 	{
 		GameManager.Instance.enemies.Add(this);   // 적 리스트에 자기 자신을 추가
 		maxHp = hp;
-		yield return null;		// 한 프레임 쉬자
+		yield return null;    // 한 프레임 쉬자
 		target = GameManager.Instance.player.transform;
 	}
 
 	private void Update()
 	{
 		// ?. ?? null check 접근연산자. 많이 사용하지는 말것. Start를 코루틴으로 했기 때문에 발생한 문제
+		// C, C++ 에는 없는 문법
+		// 두 가지 표현이 가능하다.
+
+		// 방법1.
+		//if (target == null)
+		//{
+		//	return;
+		//}
+		//Vector2 moveDir = target != null ? target.position - transform.position : Vector2.one;
+
+		// 방법2.
 		Vector2 moveDir = target?.position - transform.position ?? Vector3.zero;
+
 		Move(moveDir.normalized);
 		//print(moveDir.magnitude);//vector.magnitude:해당 벡터가 "방향벡터"로 간주될 때, 벡터의 길이
 		//print(moveDir.normalized);//방향을 유지한채 길이가 1로 고정된 벡터.
@@ -65,7 +77,7 @@ public class Enemy : MonoBehaviour
 	}
 
 	public float damageInterval;    // 데미지 간격
-	private float preDamageTime;		// 이전에 데미지를 준 시간(Time.time)
+	private float preDamageTime;    // 이전에 데미지를 준 시간(Time.time)
 
 	private void OnCollisionStay2D(Collision2D collision)
 	{
@@ -74,5 +86,10 @@ public class Enemy : MonoBehaviour
 		{
 			collision.collider.GetComponent<Player>().TakeDamage(damage);
 		}
+	}
+
+	public void Contact()
+	{
+
 	}
 }

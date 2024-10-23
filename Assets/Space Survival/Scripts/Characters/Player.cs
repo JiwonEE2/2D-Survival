@@ -102,9 +102,23 @@ public class Player : MonoBehaviour
 		projectile.damage = damage;
 	}
 
+	public void TakeHeal(float heal)
+	{
+		hp += heal;
+		if (hp > maxHp)
+		{
+			hp = maxHp;
+		}
+	}
+
 	public void TakeDamage(float damage)
 	{
-		print($"아야! : {damage}");
+		//print($"아야! : {damage}");
+		if (damage < 0)
+		{
+			//TakeHeal(-damage);	// 대신 힐 하도록 처리
+			damage = 0;
+		}
 		hp -= damage;
 		if (hp <= 0)
 		{
@@ -115,9 +129,29 @@ public class Player : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if(collision.TryGetComponent<Bomb>(out Bomb bomb))		// 만약 상호작용한 트리거에 Bomb 컴포넌트가 있을 경우
-		{
-			bomb.Contact();
-		}
+		// 아이템이랑 상호작용 할 건데... 아이템이 bomb도 있고 heal도 있어서 전부 각 객체 별로 행동을 정의했더니 소스코드도 길어지고..
+		//if (collision.TryGetComponent<Bomb>(out Bomb bomb))   // 만약 상호작용한 트리거에 Bomb 컴포넌트가 있을 경우
+		//{
+		//	bomb.Contact();
+		//}
+		//if(collision.TryGetComponent<Heal>(out Heal heal))
+		//{
+		//	heal.Contact();
+		//}
+
+		// 이럴 때 개발자가 "다형성"을 구현하여
+		// 소스코드를 효율적으로 작성할 수 있는 방법 3가지
+		// 1. 부모 클래스를 상속
+		// 2. 인터페이스를 구현
+		// 3. 유니티의 SendMessage 사용
+
+		// 1. 부모 클래스를 상속했을 경우
+		//if(collision.TryGetComponent<Item>(out Item item))
+		//{
+		//	item.Contact();
+		//	// 부딪힌 객체가 정확히 어떤 타입일 지는 모르겠으나 Item이라는 클래스를 상속한 것은 확실하고 그렇다면 Contact() 함수를 가지고 있으므로 호출할 수 있다.
+		//}
+
+		// 2. 만약 특정 클래스를 상속하지 않고, 공통점이 없는 여러 객체들이 경우에 따라 같은 행동을 해야할 경우, Interface를 사용할 수 있다.
 	}
 }

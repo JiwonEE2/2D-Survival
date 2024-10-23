@@ -112,4 +112,12 @@ public class Player : MonoBehaviour
 
 		}
 	}
+
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		if(collision.TryGetComponent<Bomb>(out Bomb bomb))		// 만약 상호작용한 트리거에 Bomb 컴포넌트가 있을 경우
+		{
+			bomb.Contact();
+		}
+	}
 }

@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 	private static GameManager instance;
 	public static GameManager Instance => instance;
 	internal List<Enemy> enemies = new List<Enemy>();   // 씬에 존재하는 전체 적 List
-	internal Player player;		// 씬에 존재하는 플레이어 객체
+	internal Player player;   // 씬에 존재하는 플레이어 객체
 
 	// 값의 초기화, 싱글턴 등은 awake에서
 	// 결과 : 하이어라키에서 게임매니저를 여러개 만들어도 dontdestroy 어쩌구에는 제일 마지막 게임매니저만 올라가고 나머지는 스크립트가 삭제된다.(컴포넌트가)
@@ -32,6 +32,19 @@ public class GameManager : MonoBehaviour
 	private void Start()
 	{
 
+	}
+
+	// 폭탄 아이템이 호출하여 모든 적을 제거 (Enemy.Die())
+	// internal로 되어있는 enemies 리스트를 다른 곳에서 호출하는 것은 좋은 방법이 아니기 때문에 GameManager 상에서 함수를 생성하여 바깥에서 그 함수를 호출하는 것이 좋다.
+	public void RemoveAllEnemies()
+	{
+		// enemies 파라미터로 할 시 그대로 복사하여(얕은복사:주소값만) 새 리스트로 생성
+		// 일단 이 방법도 좋은 방법이 아니다.
+		List<Enemy> removeTargets = new List<Enemy>(enemies);       // enemies 리스트를 복사
+		foreach (Enemy removeTarget in removeTargets)
+		{
+			removeTarget.Die();
+		}
 	}
 }
 

@@ -376,6 +376,7 @@ MonoBehaviour:
   damage: 10
   moveSpeed: 3
   hpBar: {fileID: 8411193559293531160}
+  exp: 50
   damageInterval: 1
 --- !u!1 &4690664931231109834
 GameObject:

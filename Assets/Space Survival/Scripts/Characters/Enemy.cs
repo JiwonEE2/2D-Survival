@@ -22,6 +22,9 @@ public class Enemy : MonoBehaviour
 	public Image hpBar;
 
 	private Rigidbody2D rb;
+
+	public ParticleSystem impactParticle;
+
 	private void Awake()
 	{
 		rb = GetComponent<Rigidbody2D>();
@@ -79,7 +82,7 @@ public class Enemy : MonoBehaviour
 		}
 	}
 
-	int exp = 5;
+	public int exp = 5;
 
 	public void Die()
 	{
@@ -106,6 +109,7 @@ public class Enemy : MonoBehaviour
 		if (collision.collider.CompareTag("Player"))
 		{
 			collision.collider.GetComponent<Player>().TakeDamage(damage);
+			var particle = Instantiate(impactParticle, collision.contacts[0].point, Quaternion.identity);
 			preDamageTime = Time.time;
 		}
 	}

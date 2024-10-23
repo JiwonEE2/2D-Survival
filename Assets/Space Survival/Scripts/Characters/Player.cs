@@ -5,10 +5,14 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-	public int level = 1;   // 레벨
+	public int level = 0;   // 레벨
 	public int exp = 0;     // 경험치
 
-	private int[] levelupSteps = { 100, 200, 300 };
+	// 현업에서 개발되는 대부분의 게임은 exp값을 빼지 않음
+	// 계속 exp를 누적하는 대신에 현재 exp를 레벨로 환산하면 몇 레벨에 해당하는 지 계산
+
+	private int[] levelupSteps = { 100, 200, 300, 400 };  // 최대 레벨 5까지의 경험치 단계
+	private int currentMaxExp;  // 현재 레벨에서 레벨업 하기까지 필요한 경험치 량
 
 	private float maxHp;
 	public float hp = 100f; //체력
@@ -41,7 +45,9 @@ public class Player : MonoBehaviour
 	void Start()
 	{
 		maxHp = hp;   // 최대 체력 지정
-		levelText.text = level.ToString();
+		currentMaxExp = levelupSteps[0];  // 최대 경험치
+
+		levelText.text = (level + 1).ToString();
 		expText.text = exp.ToString();
 		GameManager.Instance.player = this;
 
@@ -187,6 +193,20 @@ public class Player : MonoBehaviour
 	public void GainExp(int exp)
 	{
 		this.exp += exp;    // 습득 경험치 더함
+		if (level < levelupSteps.Length && this.exp >= currentMaxExp)  // 경험치 습득 후 레벨업을 위한 경험치에 도달하면
+		{
+			// 레벨업
+			level++;
+			this.exp = currentMaxExp;
+			currentMaxExp -= levelupSteps[level];
+			if (level < levelupSteps.Length)
+			{
+				currentMaxExp -= levelupSteps[level];
+			}
+
+			// 레벨업하면 레벨업 이펙트, UI, 얻게된 스킬도
+			//DoLevelUp();
+		}
 
 		levelText.text = level.ToString();
 		expText.text = this.exp.ToString();

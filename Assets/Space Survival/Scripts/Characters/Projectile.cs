@@ -20,6 +20,8 @@ public class Projectile : MonoBehaviour
 	{
 		Move(Vector2.up);
 		//Physics2D.OverlapCircle();
+
+
 	}
 
 	public void Move(Vector2 dir)

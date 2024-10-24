@@ -15,6 +15,7 @@ public class LaserGun : MonoBehaviour
 
 	public int projectileCount;         // 투사체 개수 1~5
 	public float innerInterval;
+	[Tooltip("관통 횟수입니다\n무제한 관통을 원할 경우 0")]
 	public int pierceCount;             // 관통 횟수
 
 	protected virtual void Start()

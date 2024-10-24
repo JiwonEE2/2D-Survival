@@ -501,7 +501,7 @@ MonoBehaviour:
   shotInterval: 5
   projectileCount: 5
   innerInterval: 0
-  pierceCount: 2
+  pierceCount: 0
   shotPoints:
   - {fileID: 1748357909}
   - {fileID: 861794977}

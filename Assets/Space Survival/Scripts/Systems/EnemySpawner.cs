@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
-	// 1. 적이 한 번 스폰될 때 1마리가 아닌 2~10마리 스폰하도록 변경
+	// 1. 적이 한 번 스폰될 때 1마리가 아닌 2~10마리 스폰하도록 변경 0
 	// 2. 적 스폰 위치를 Vector2.zero가 아닌, 플레이어 기준 특정 거리 이상 위치에 스폰하기
 	[Tooltip("한번에 스폰될 적의 수\nx:최소, y:최대")]
 	public Vector2Int minMaxCount;
@@ -24,15 +24,16 @@ public class EnemySpawner : MonoBehaviour
 		{
 			yield return new WaitForSeconds(spawnInterval);
 			int enemyCount = Random.Range(minMaxCount.x, minMaxCount.y);
-			for (int i = 0; i < enemyCount; i++)
-			{
-				Spawn();    // 몬스터 스폰
-			}
+			Spawn(enemyCount);    // 몬스터 스폰
 		}
 	}
 
-	private void Spawn()
+	private void Spawn(int count)
 	{
-		Instantiate(enemyPrefab);
+		for (int i = 0; i < count; i++)
+		{
+			Vector2 playerPos = GameManager.Instance.player.transform.position;
+			Instantiate(enemyPrefab);
+		}
 	}
 }

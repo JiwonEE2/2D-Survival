@@ -23,6 +23,7 @@ public class LaserShotgun : LaserGun
 			proj.damage = damage;
 			proj.moveSpeed = projectileSpeed;
 			proj.transform.localScale *= projectileScale;
+			proj.transform.up = shotPoint.position - transform.position;
 		}
 	}
 }

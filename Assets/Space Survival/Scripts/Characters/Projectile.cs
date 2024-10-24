@@ -5,9 +5,11 @@ using UnityEngine;
 //투사체
 public class Projectile : MonoBehaviour
 {
-	public float damage = 10;//데미지
-	public float moveSpeed = 5;//이동속도
-	public float duration = 3;//지속시간
+	public float damage = 10;   //데미지
+	public float moveSpeed = 5; //이동속도
+	public float duration = 3;  //지속시간
+
+	public int pierceCount = 0; // 관통횟수
 
 	private void Start()
 	{

@@ -18,9 +18,10 @@ public class Projectile : MonoBehaviour
 		coll.enabled = false;
 	}
 
-	private void Start()
+	private void OnEnable()
 	{
-		Destroy(gameObject, duration); //3초 후에 오브젝트 제거
+		//Destroy(gameObject, duration); //3초 후에 오브젝트 제거
+		ProjectilePool.pool.Push(this, duration);
 	}
 
 	List<Collider2D> contactedColls = new();  // OverlabCircle 함수를 통해 감지한 적이 있는 콜라이더를 담을 List
@@ -43,7 +44,8 @@ public class Projectile : MonoBehaviour
 					if (pierceCount == 0)
 					{
 						// 관통 횟수가 모두 소모되면 Destroy
-						Destroy(gameObject);
+						//Destroy(gameObject);
+						ProjectilePool.pool.Push(this);
 					}
 				}
 			}
@@ -66,7 +68,13 @@ public class Projectile : MonoBehaviour
 		if (other.TryGetComponent<Enemy>(out Enemy enemy))
 		{
 			enemy.TakeDamage(damage);
-			Destroy(gameObject);
+			//Destroy(gameObject);
+			ProjectilePool.pool.Push(this);
 		}
+	}
+
+	private void OnDisable()
+	{
+		contactedColls.Clear();
 	}
 }

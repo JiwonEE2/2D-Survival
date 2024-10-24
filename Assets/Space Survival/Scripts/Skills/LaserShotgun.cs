@@ -19,7 +19,10 @@ public class LaserShotgun : LaserGun
 	{
 		foreach (Transform shotPoint in shotPoints)
 		{
-			Projectile proj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+			Projectile proj = //Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+				projPool.Pop();
+			proj.transform.position = transform.position;
+
 			proj.damage = damage;
 			proj.moveSpeed = projectileSpeed;
 			proj.transform.localScale *= projectileScale;

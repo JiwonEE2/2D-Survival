@@ -50,7 +50,12 @@ public class LaserGun : MonoBehaviour
 
 	protected virtual void Fire()
 	{
-		Projectile proj = Instantiate(projectilePrefab, transform.position, transform.rotation);
+		Projectile proj =
+			//Instantiate(projectilePrefab, transform.position, transform.rotation);
+			projPool.Pop();
+
+		proj.transform.SetPositionAndRotation(transform.position, transform.rotation);
+
 		proj.damage = damage;
 		proj.moveSpeed = projectileSpeed;
 		proj.transform.localScale *= projectileScale;

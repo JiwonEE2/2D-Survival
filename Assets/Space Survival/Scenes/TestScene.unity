@@ -197,6 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d9e20e360d64cf42b1f668e35a0aeb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projPrefab: {fileID: 2452495516228825841, guid: db241663d3ca96e46a92e22395dc25f2, type: 3}
 --- !u!1 &338275214
 GameObject:
   m_ObjectHideFlags: 0
@@ -778,7 +779,7 @@ GameObject:
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1597786855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -793,7 +794,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 731583137}
   projectilePrefab: {fileID: 2452495516228825841, guid: db241663d3ca96e46a92e22395dc25f2, type: 3}
-  projPool: {fileID: 0}
+  projPool: {fileID: 138234222}
   damage: 5
   projectileSpeed: 5
   projectileScale: 1

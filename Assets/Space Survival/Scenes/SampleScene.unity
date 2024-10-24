@@ -1308,6 +1308,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96ee1a3b70ea98d4c8d769aeed69e228, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minMaxCount: {x: 2, y: 10}
+  minMaxDist: {x: 3, y: 5}
   enemyPrefab: {fileID: 4430352534475327841, guid: 3ecc6a0b645e5ab408d6e230dfcf2b0d, type: 3}
   spawnInterval: 3
 --- !u!1001 &1533898997

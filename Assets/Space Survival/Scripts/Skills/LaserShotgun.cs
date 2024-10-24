@@ -26,6 +26,7 @@ public class LaserShotgun : LaserGun
 
 			// 투사체는 tranform.up 방향으로 진행하므로 up방향이 발사 방향으로 향하도록 transform.up에 방향 벡터를 대입
 			proj.transform.up = shotPoint.position - transform.position;
+			proj.pierceCount = pierceCount;
 		}
 	}
 }

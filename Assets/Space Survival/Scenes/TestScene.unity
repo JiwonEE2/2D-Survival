@@ -498,10 +498,10 @@ MonoBehaviour:
   damage: 5
   projectileSpeed: 5
   projectileScale: 1
-  shotInterval: 1
+  shotInterval: 5
   projectileCount: 5
   innerInterval: 0
-  pierceCount: 0
+  pierceCount: 2
   shotPoints:
   - {fileID: 1748357909}
   - {fileID: 861794977}

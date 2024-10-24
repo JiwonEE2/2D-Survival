@@ -52,5 +52,6 @@ public class LaserGun : MonoBehaviour
 		proj.damage = damage;
 		proj.moveSpeed = projectileSpeed;
 		proj.transform.localScale *= projectileScale;
+		proj.pierceCount = pierceCount;
 	}
 }

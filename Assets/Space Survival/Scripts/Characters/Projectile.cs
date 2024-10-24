@@ -10,18 +10,50 @@ public class Projectile : MonoBehaviour
 	public float duration = 3;  //지속시간
 
 	public int pierceCount = 0; // 관통횟수
+	private CircleCollider2D coll;
+
+	private void Awake()
+	{
+		coll = GetComponent<CircleCollider2D>();
+		coll.enabled = false;
+	}
 
 	private void Start()
 	{
 		Destroy(gameObject, duration); //3초 후에 오브젝트 제거
 	}
 
+	List<Collider2D> contactedColls = new();  // OverlabCircle 함수를 통해 감지한 적이 있는 콜라이더를 담을 List
+
 	private void Update()
 	{
 		Move(Vector2.up);
-		//Physics2D.OverlapCircle();
+		Collider2D contactedColl = Physics2D.OverlapCircle(transform.position, coll.radius);
+		if (contactedColl != null)
+		{
+			if (contactedColl.CompareTag("Enemy"))
+			{
+				if (false == contactedColls.Contains(contactedColl))
+				{
+					// 유효한 타격이 발생
+					print($"Contacted Collider : {contactedColl.name}");
+					contactedColls.Add(contactedColl);
 
+					pierceCount--;
+					if (pierceCount == 0)
+					{
+						// 관통 횟수가 모두 소모되면 Destroy
+						Destroy(gameObject);
+					}
+				}
+			}
+		}
+	}
 
+	private void OnDrawGizmos()
+	{
+		Gizmos.color = Color.green;
+		Gizmos.DrawWireSphere(transform.position, coll.radius);
 	}
 
 	public void Move(Vector2 dir)
@@ -37,5 +69,4 @@ public class Projectile : MonoBehaviour
 			Destroy(gameObject);
 		}
 	}
-
 }

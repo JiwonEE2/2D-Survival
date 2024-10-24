@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Missile : MonoBehaviour
 {
@@ -19,10 +20,10 @@ public class Missile : MonoBehaviour
 
 	private void Start()
 	{
-
+		StartCoroutine(FireCoroutine());
 	}
 
-	protected virtual IEnumerator FireCoroutine()
+	private IEnumerator FireCoroutine()
 	{
 		while (true)
 		{
@@ -31,8 +32,15 @@ public class Missile : MonoBehaviour
 		}
 	}
 
-	protected virtual void Fire()
+	private void Fire()
 	{
-		MissileProjectile proj = Instantiate(projectilePrefab);
+		// 랜덤 Vector2 포지션을 정해서 투사체를 생성
+		Vector2 pos = Random.insideUnitCircle * maxDist;
+
+		// 랜덤 위치에 빈 오브젝트 생성 후 transform을 가져오는 로직 작성
+		//target.position = new Vector2(Random.Range(-1, 1), Random.Range(-1, 1));
+		MissileProjectile proj = Instantiate(projectilePrefab, pos, Quaternion.identity);
+		proj.damage = damage;
+		proj.duration = 1 / projectileSpeed;
 	}
 }

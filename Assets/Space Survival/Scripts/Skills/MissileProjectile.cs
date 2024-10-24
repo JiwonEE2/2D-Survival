@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class MissileProjectile : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	public float damage;    // 데미지
+	public float moveSpeed; // 투사체 속도
+	public float duration;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	CircleCollider2D coll;
+	private void Awake()
+	{
+		coll = GetComponent<CircleCollider2D>();
+	}
+
+
 }

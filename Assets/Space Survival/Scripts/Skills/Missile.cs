@@ -11,7 +11,28 @@ public class Missile : MonoBehaviour
 	public MissileProjectile projectilePrefab;
 
 	public float damage;
-	public float projectileSpeed;       // 투사체 속도
-	public float projectileScale;       // 투사체 크기
-	public float shotInterval;          // 공격 간격
+	public float projectileSpeed; // 투사체 속도
+	public float projectileScale; // 투사체 크기
+	public float shotInterval;    // 공격 간격
+
+	public float maxDist;         // 최대 타겟 거리
+
+	private void Start()
+	{
+
+	}
+
+	protected virtual IEnumerator FireCoroutine()
+	{
+		while (true)
+		{
+			yield return new WaitForSeconds(shotInterval);
+			Fire();
+		}
+	}
+
+	protected virtual void Fire()
+	{
+		MissileProjectile proj = Instantiate(projectilePrefab);
+	}
 }

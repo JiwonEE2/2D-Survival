@@ -7,6 +7,7 @@ public class LaserGun : MonoBehaviour
 {
 	public Transform target;            // 투사체가 향해야 할 방향에 있는 대상
 	public Projectile projectilePrefab; // 투사체 프리팹
+	public ProjectilePool projPool; // Projectile Prefab으로 만들어진 게임 오브젝트를 관리하는 오브젝트풀
 
 	public float damage;                // 데미지
 	public float projectileSpeed;       // 투사체 속도

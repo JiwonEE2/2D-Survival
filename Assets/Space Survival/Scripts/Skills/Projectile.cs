@@ -19,11 +19,11 @@ public class Projectile : MonoBehaviour
 		coll.enabled = false;
 	}
 
-	private void OnEnable()
+	private void OnEnable() // start보다 먼저 호출되므로 초기화가 되지 않은 상태에서의 상황을 고려해야 한다.
 	{
 		//Destroy(gameObject, duration);						//3초 후에 오브젝트 제거
 		//ProjectilePool.pool.Push(this, duration);	// 3초 후에 ProjectilePool을 통해 풀에 되돌림
-		LeanPool.Despawn(this, duration);           // 3초 후에 LeanPool을 통해 풀에 되돌림
+		//LeanPool.Despawn(this, duration);           // 3초 후에 LeanPool을 통해 풀에 되돌림
 	}
 
 	List<Collider2D> contactedColls = new();  // OverlabCircle 함수를 통해 감지한 적이 있는 콜라이더를 담을 List

@@ -66,5 +66,7 @@ public class LaserGun : MonoBehaviour
 		proj.moveSpeed = projectileSpeed;
 		proj.transform.localScale *= projectileScale;
 		proj.pierceCount = pierceCount;
+
+		LeanPool.Despawn(proj, proj.duration);
 	}
 }

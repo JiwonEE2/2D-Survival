@@ -129,6 +129,7 @@ public class Player : MonoBehaviour
 		//}
 
 		UIManager.Instance.killCountText.text = killCount.ToString();
+		UIManager.Instance.totalKillCountText.text = totalKillCount.ToString();
 		UIManager.Instance.hpBarImage.fillAmount = HpAmount;
 
 		// tail 원상태로 돌아간 뒤에 사라지는 문제 해결을 위함 

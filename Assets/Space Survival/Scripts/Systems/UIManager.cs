@@ -14,6 +14,7 @@ public class UIManager : SingletonManager<UIManager>
 	public GameObject levelupPanel; // 레벨업 패널
 
 	public Text killCountText;
+	public Text totalKillCountText;
 	public Text levelText;
 	public Text expText;
 	public Image hpBarImage;

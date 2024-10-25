@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 // UI를 관리하는 싱글톤 오브젝트
 public class UIManager : SingletonManager<UIManager>
@@ -33,11 +34,36 @@ public class UIManager : SingletonManager<UIManager>
 		levelupPanel.SetActive(false);
 	}
 
+	bool isPaused = false;  // 일시정지 여부
+
+	private void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.Escape)) // esc 키가 눌리면 일시정지
+		{
+			isPaused = !isPaused;
+			pausePanel.SetActive(isPaused);
+			Time.timeScale = isPaused ? 0f : 1f;
+		}
+	}
+
 	// Reset 메시지 함수 : 컴포넌트가 처음 부착되거나 컴포넌트 메뉴의 Reset을 선택할 경우 호출
 	private void Reset()
 	{
 		mainCanvas = GetComponent<Canvas>();
 		pausePanel = transform.Find("PausePanel")?.gameObject;
 		levelupPanel = transform.Find("LevelupPanel")?.gameObject;
+	}
+
+	// 플레이어가 레벨업을 하면 패널 활성화 요청
+	public void LevelUpPanelOpen(List<Skill> skillList, Action<Skill> callback)
+	{
+		// 스킬 2개 UI에 표시할 예정
+
+	}
+
+	// 레벨업 패널을 닫을 시 LevelUpPanelOpen의 callback을 호출
+	public void LevelUpPanelClose()
+	{
+
 	}
 }

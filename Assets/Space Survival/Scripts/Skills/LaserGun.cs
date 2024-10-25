@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Lean.Pool;
 
 // 기본 공격. 투사체를 발사하는 스킬
 public class LaserGun : MonoBehaviour
@@ -51,10 +52,15 @@ public class LaserGun : MonoBehaviour
 	protected virtual void Fire()
 	{
 		Projectile proj =
+			// 일반적으로 유니티에서 객체를 생성할 때
 			//Instantiate(projectilePrefab, transform.position, transform.rotation);
-			projPool.Pop();
 
-		proj.transform.SetPositionAndRotation(transform.position, transform.rotation);
+			// 커스텀 오브젝트 풀을 사용할 때
+			//projPool.Pop();
+			//proj.transform.SetPositionAndRotation(transform.position, transform.rotation);
+
+			// 오브젝트 풀 라이브러리(LeanPool) 활용
+			LeanPool.Spawn(projectilePrefab, transform.position, transform.rotation);
 
 		proj.damage = damage;
 		proj.moveSpeed = projectileSpeed;

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Lean.Pool;
 
 //투사체
 public class Projectile : MonoBehaviour
@@ -20,8 +21,9 @@ public class Projectile : MonoBehaviour
 
 	private void OnEnable()
 	{
-		//Destroy(gameObject, duration); //3초 후에 오브젝트 제거
-		ProjectilePool.pool.Push(this, duration);
+		//Destroy(gameObject, duration);						//3초 후에 오브젝트 제거
+		//ProjectilePool.pool.Push(this, duration);	// 3초 후에 ProjectilePool을 통해 풀에 되돌림
+		LeanPool.Despawn(this, duration);           // 3초 후에 LeanPool을 통해 풀에 되돌림
 	}
 
 	List<Collider2D> contactedColls = new();  // OverlabCircle 함수를 통해 감지한 적이 있는 콜라이더를 담을 List
@@ -45,7 +47,8 @@ public class Projectile : MonoBehaviour
 					{
 						// 관통 횟수가 모두 소모되면 Destroy
 						//Destroy(gameObject);
-						ProjectilePool.pool.Push(this);
+						//ProjectilePool.pool.Push(this);
+						LeanPool.Despawn(this);
 					}
 				}
 			}
@@ -69,7 +72,8 @@ public class Projectile : MonoBehaviour
 		{
 			enemy.TakeDamage(damage);
 			//Destroy(gameObject);
-			ProjectilePool.pool.Push(this);
+			//ProjectilePool.pool.Push(this);
+			LeanPool.Despawn(this);
 		}
 	}
 

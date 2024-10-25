@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
 	public float HpAmount { get => hp / maxHp; }    // 현재 체력 비율
 
 	public int killCount = 0;
+	public int totalKillCount = 0;  // 이전 게임에서의 누적 카운트
 
 	//public Text killCountText;
 	//public Image hpBarImage;

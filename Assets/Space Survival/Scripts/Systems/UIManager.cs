@@ -27,6 +27,12 @@ public class UIManager : SingletonManager<UIManager>
 		//levelupPanel = transform.Find("LevelupPanel").gameObject;
 	}
 
+	private void Start()
+	{
+		pausePanel.SetActive(false);
+		levelupPanel.SetActive(false);
+	}
+
 	// Reset 메시지 함수 : 컴포넌트가 처음 부착되거나 컴포넌트 메뉴의 Reset을 선택할 경우 호출
 	private void Reset()
 	{

@@ -12,7 +12,7 @@ public class UIManager : SingletonManager<UIManager>
 	//public static T instance => public static UIManager instance;
 	public Canvas mainCanvas;       // 메인 UICanvas
 	public GameObject pausePanel;   // 일시정지 패널
-	public GameObject levelupPanel; // 레벨업 패널
+	public SkillLevelupPanel levelupPanel; // 레벨업 패널
 
 	public Text killCountText;
 	public Text totalKillCountText;
@@ -31,7 +31,7 @@ public class UIManager : SingletonManager<UIManager>
 	private void Start()
 	{
 		pausePanel.SetActive(false);
-		levelupPanel.SetActive(false);
+		levelupPanel.gameObject.SetActive(false);
 	}
 
 	bool isPaused = false;  // 일시정지 여부
@@ -51,19 +51,6 @@ public class UIManager : SingletonManager<UIManager>
 	{
 		mainCanvas = GetComponent<Canvas>();
 		pausePanel = transform.Find("PausePanel")?.gameObject;
-		levelupPanel = transform.Find("LevelupPanel")?.gameObject;
-	}
-
-	// 플레이어가 레벨업을 하면 패널 활성화 요청
-	public void LevelUpPanelOpen(List<Skill> skillList, Action<Skill> callback)
-	{
-		// 스킬 2개 UI에 표시할 예정
-
-	}
-
-	// 레벨업 패널을 닫을 시 LevelUpPanelOpen의 callback을 호출
-	public void LevelUpPanelClose()
-	{
-
+		levelupPanel = transform.Find("LevelupPanel")?.GetComponent<SkillLevelupPanel>();
 	}
 }

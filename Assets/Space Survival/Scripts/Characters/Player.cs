@@ -274,8 +274,11 @@ public class Player : MonoBehaviour
 		if (level < levelupSteps.Length)  // 아직 최대 레벨에 도달하지 않아서 레벨업이 되었을 때
 		{
 			currentMaxExp = levelupSteps[level];
-			int skillNum = Random.Range(0, skills.Count);
-			OnSkillLevelUp(skills[skillNum]); // (임시) 레벨업하면 랜덤 스킬 1개를 레벨업
+
+			UIManager.Instance.levelupPanel.LevelUpPanelOpen(skills, OnSkillLevelUp);
+
+			//int skillNum = Random.Range(0, skills.Count);
+			//OnSkillLevelUp(skills[skillNum]); // (임시) 레벨업하면 랜덤 스킬 1개를 레벨업
 		}
 	}
 

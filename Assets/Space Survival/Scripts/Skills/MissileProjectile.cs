@@ -50,7 +50,7 @@ public class MissileProjectile : MonoBehaviour
 		{
 			if (contactedColl.CompareTag("Enemy"))
 			{
-				print($"Exploded Collider : {contactedColl.name}");
+				//print($"Exploded Collider : {contactedColl.name}");
 			}
 		}
 		Destroy(gameObject);

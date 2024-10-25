@@ -69,6 +69,7 @@ public class Player : MonoBehaviour
 			{
 				skillObj.transform.SetParent(fireDir);  // 항상 적을 향하는 오브젝트 자식으로 만듦
 			}
+			skill.currentSkillObject = skillObj;
 		}
 	}
 
@@ -213,12 +214,7 @@ public class Player : MonoBehaviour
 		if (level < levelupSteps.Length && this.exp >= currentMaxExp)  // 경험치 습득 후 레벨업을 위한 경험치에 도달하면
 		{
 			// 레벨업
-			level++;
-			if (level < levelupSteps.Length)
-			{
-				currentMaxExp = levelupSteps[level];
-			}
-
+			OnLevelUp();
 			// 레벨업하면 레벨업 이펙트, UI, 얻게된 스킬도
 			//DoLevelUp();
 		}
@@ -271,12 +267,35 @@ public class Player : MonoBehaviour
 		// 마지막 파라미터는 null 일때 무시할 건지 말건지 설정할 수 있다. 그래서 이렇게 최대 3개의 파라미터를 가질 수 있다.
 	}
 
+	public void OnLevelUp()
+	{
+		level++;
+		exp -= currentMaxExp;
+		if (level < levelupSteps.Length)  // 아직 최대 레벨에 도달하지 않아서 레벨업이 되었을 때
+		{
+			currentMaxExp = levelupSteps[level];
+			int skillNum = Random.Range(0, skills.Count);
+			OnSkillLevelUp(skills[skillNum]); // (임시) 레벨업하면 랜덤 스킬 1개를 레벨업
+		}
+	}
+
 	// 파라미터로 넘어온 스킬의 레벨을 상승시키고, 다음 레벨의 프리팹으로 교체
 	public void OnSkillLevelUp(Skill skill)
 	{
-		if (skill.skillLevel >= skill.skillPrefabs.Length)
+		if (skill.skillLevel >= skill.skillPrefabs.Length - 1)
 		{
-
+			// 유효하지 않은 스킬이 넘어왔다.
+			Debug.LogWarning($"최대 레벨에 도달한 스킬 레벨 업을 시도함{skill.skillName}");
+			return;
+		}
+		skill.skillLevel++;                 // 스킬 레벨 상승
+		Destroy(skill.currentSkillObject);  // 기존에 있던 스킬 오브젝트를 제거
+		skill.currentSkillObject = Instantiate(skill.skillPrefabs[skill.skillLevel], transform, false);
+		skill.currentSkillObject.name = skill.skillPrefabs[skill.skillLevel].name;
+		skill.currentSkillObject.transform.localPosition = Vector2.zero;
+		if (skill.isTargetting)
+		{
+			skill.currentSkillObject.transform.SetParent(fireDir);
 		}
 	}
 }

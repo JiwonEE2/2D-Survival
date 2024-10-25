@@ -63,7 +63,7 @@ public class EnemySpawner : MonoBehaviour
 			// 움직인 좌표에 minDist만큼 움직인 벡터를 더한다.
 			spawnPos = movedPos + notSpawnAreaVector;
 			//spawnPos = (ranPos * (minMaxDist.y - minMaxDist.x)) + (ranPos.normalized * minMaxDist.x);
-			print($"spawnPos : {spawnPos}");
+			//print($"spawnPos : {spawnPos}");
 
 			Instantiate(enemyPrefab, playerPos + spawnPos, Quaternion.identity);
 		}

@@ -39,9 +39,9 @@ public class Projectile : MonoBehaviour
 				if (false == contactedColls.Contains(contactedColl))
 				{
 					// 유효한 타격이 발생
-					print($"Contacted Collider : {contactedColl.name}");
+					//print($"Contacted Collider : {contactedColl.name}");
+					contactedColl.SendMessage("TakeDamage", damage);
 					contactedColls.Add(contactedColl);
-
 					pierceCount--;
 					if (pierceCount == 0)
 					{
@@ -55,11 +55,11 @@ public class Projectile : MonoBehaviour
 		}
 	}
 
-	private void OnDrawGizmos()
-	{
-		Gizmos.color = Color.green;
-		Gizmos.DrawWireSphere(transform.position, coll.radius);
-	}
+	//private void OnDrawGizmos()
+	//{
+	//	Gizmos.color = Color.green;
+	//	Gizmos.DrawWireSphere(transform.position, coll.radius);
+	//}
 
 	public void Move(Vector2 dir)
 	{

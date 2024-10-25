@@ -1998,12 +1998,15 @@ MonoBehaviour:
   - skillName: LaserGun
     skillLevel: 1
     skillPrefab: {fileID: 5334779351714054974, guid: df8ed6974e757d745ba74004e7fc1f07, type: 3}
+    isTargetting: 1
   - skillName: LaserShotgun
     skillLevel: 1
     skillPrefab: {fileID: 2584369925285779490, guid: 59786b4d759b4a049979785837c0d184, type: 3}
+    isTargetting: 1
   - skillName: Missile
     skillLevel: 1
     skillPrefab: {fileID: 1090985618923938403, guid: 579e39cf9f53ce2498b73af80aadbb18, type: 3}
+    isTargetting: 0
 --- !u!58 &1966559059
 CircleCollider2D:
   m_ObjectHideFlags: 0

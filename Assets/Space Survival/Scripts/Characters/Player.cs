@@ -57,6 +57,17 @@ public class Player : MonoBehaviour
 		// 리턴이 있는 함수를 호출할 때, 리턴을 사용하지 않는다면
 		// 아예 반환을 위한 메모리를 점유하지 않고 함수만 호출
 		//_ = StartCoroutine(FireCoroutine());
+
+		foreach (Skill skill in skills)
+		{
+			GameObject skillObj = Instantiate(skill.skillPrefab, transform, false); // 스킬 오브젝트 생성
+			skillObj.name = skill.skillName;                                        // 오브젝트 이름 변경
+			skillObj.transform.localPosition = Vector2.zero;                        // 스킬 위치를 플레이어의 위치로 가져옴
+			if (skill.isTargetting)
+			{
+				skillObj.transform.SetParent(fireDir);  // 항상 적을 향하는 오브젝트 자식으로 만듦
+			}
+		}
 	}
 
 	void Update()

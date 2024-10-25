@@ -12,6 +12,11 @@ public abstract class SingletonManager<T> : MonoBehaviour where T : MonoBehaviou
 		if (instance == null)
 		{
 			instance = this as T;
+			DontDestroyOnLoad(gameObject);
+		}
+		else
+		{
+			DestroyImmediate(this);
 		}
 	}
 }

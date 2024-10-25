@@ -24,10 +24,11 @@ public class Player : MonoBehaviour
 	public float HpAmount { get => hp / maxHp; }    // 현재 체력 비율
 
 	public int killCount = 0;
-	public Text killCountText;
-	public Image hpBarImage;
-	public Text levelText;
-	public Text expText;
+
+	//public Text killCountText;
+	//public Image hpBarImage;
+	//public Text levelText;
+	//public Text expText;
 
 	private Transform moveDir;
 	private Transform fireDir;
@@ -50,8 +51,8 @@ public class Player : MonoBehaviour
 		maxHp = hp;   // 최대 체력 지정
 		currentMaxExp = levelupSteps[0];  // 최대 경험치
 
-		levelText.text = (level + 1).ToString();
-		expText.text = exp.ToString();
+		UIManager.Instance.levelText.text = (level + 1).ToString();
+		UIManager.Instance.expText.text = exp.ToString();
 		GameManager.Instance.player = this;
 
 		// 리턴이 있는 함수를 호출할 때, 리턴을 사용하지 않는다면
@@ -126,8 +127,8 @@ public class Player : MonoBehaviour
 		//	Fire(fireDir);
 		//}
 
-		killCountText.text = killCount.ToString();
-		hpBarImage.fillAmount = HpAmount;
+		UIManager.Instance.killCountText.text = killCount.ToString();
+		UIManager.Instance.hpBarImage.fillAmount = HpAmount;
 
 		// tail 원상태로 돌아간 뒤에 사라지는 문제 해결을 위함 
 		if (moveDir.magnitude > 0.1f)
@@ -220,8 +221,8 @@ public class Player : MonoBehaviour
 			//DoLevelUp();
 		}
 
-		levelText.text = (level + 1).ToString();
-		expText.text = this.exp.ToString();
+		UIManager.Instance.levelText.text = (level + 1).ToString();
+		UIManager.Instance.expText.text = this.exp.ToString();
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)

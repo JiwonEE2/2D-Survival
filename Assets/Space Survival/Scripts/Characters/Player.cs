@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
 	public float damage = 5f; //공격력
 	public float moveSpeed = 5f; //이동속도
 
-	public Projectile projectilePrefab; //투사체 프리팹
+	//public Projectile projectilePrefab; //투사체 프리팹
 
 	public float HpAmount { get => hp / maxHp; }    // 현재 체력 비율
 
@@ -34,6 +34,9 @@ public class Player : MonoBehaviour
 
 	private Rigidbody2D rb;
 	public Animator tailfireAnimCtrl;
+
+	// 플레이어가 Fire 기능을 사용하는 대신 Skill들을 관리하여 공격 기능을 수행하도록
+	public List<Skill> skills;
 
 	private void Awake()
 	{
@@ -53,7 +56,7 @@ public class Player : MonoBehaviour
 
 		// 리턴이 있는 함수를 호출할 때, 리턴을 사용하지 않는다면
 		// 아예 반환을 위한 메모리를 점유하지 않고 함수만 호출
-		_ = StartCoroutine(FireCoroutine());
+		//_ = StartCoroutine(FireCoroutine());
 	}
 
 	void Update()
@@ -77,15 +80,15 @@ public class Player : MonoBehaviour
 		Enemy targetEnemy = null;   // 대상으로 지정된 적
 		float targetDistance = float.MaxValue;    // 대상과의 거리
 
-		if (GameManager.Instance.enemies.Count == 0)
-		{
-			// 발사 절차를 생략
-			isFiring = false;
-		}
-		else
-		{
-			isFiring = true;
-		}
+		//if (GameManager.Instance.enemies.Count == 0)
+		//{
+		//	// 발사 절차를 생략
+		//	isFiring = false;
+		//}
+		//else
+		//{
+		//	isFiring = true;
+		//}
 
 		foreach (Enemy enemy in GameManager.Instance.enemies)
 		{
@@ -140,29 +143,29 @@ public class Player : MonoBehaviour
 	/// <summary>
 	/// 투사체를 발사.
 	/// </summary>
-	public void Fire()
-	{
-		Projectile projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+	//public void Fire()
+	//{
+	//	Projectile projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
 
-		projectile.transform.up = fireDir.up;
-		projectile.damage = damage;
-	}
+	//	projectile.transform.up = fireDir.up;
+	//	projectile.damage = damage;
+	//}
 
-	public float fireInterval;
-	public bool isFiring;
+	//public float fireInterval;
+	//public bool isFiring;
 
 	// 자동으로 투사체 발사 코루틴
-	private IEnumerator FireCoroutine()
-	{
-		while (true)
-		{
-			yield return new WaitForSeconds(fireInterval);
-			if (isFiring)
-			{
-				Fire();
-			}
-		}
-	}
+	//private IEnumerator FireCoroutine()
+	//{
+	//	while (true)
+	//	{
+	//		yield return new WaitForSeconds(fireInterval);
+	//		if (isFiring)
+	//		{
+	//			Fire();
+	//		}
+	//	}
+	//}
 
 	public void TakeHeal(float heal)
 	{

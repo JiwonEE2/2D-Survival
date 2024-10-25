@@ -1,3 +1,4 @@
+using Lean.Pool;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,8 +21,9 @@ public class LaserShotgun : LaserGun
 		foreach (Transform shotPoint in shotPoints)
 		{
 			Projectile proj = //Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-				projPool.Pop();
-			proj.transform.position = transform.position;
+												//projPool.Pop();
+												//proj.transform.position = transform.position;
+			LeanPool.Spawn(projectilePrefab, transform.position, Quaternion.identity);
 
 			proj.damage = damage;
 			proj.moveSpeed = projectileSpeed;
@@ -29,7 +31,9 @@ public class LaserShotgun : LaserGun
 
 			// 투사체는 tranform.up 방향으로 진행하므로 up방향이 발사 방향으로 향하도록 transform.up에 방향 벡터를 대입
 			proj.transform.up = shotPoint.position - transform.position;
-			proj.pierceCount = pierceCount;
+			proj.pierceCount = pierceCount; // 관통 횟수를 스킬에 입력된 수치로 대입
+
+			LeanPool.Despawn(proj, proj.duration);
 		}
 	}
 }

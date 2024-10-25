@@ -691,6 +691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f0c00d909db1494fb85dcf77f149064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clearPrefsOnStart: 0
 --- !u!4 &543756302
 Transform:
   m_ObjectHideFlags: 0
@@ -2371,16 +2372,34 @@ MonoBehaviour:
   skills:
   - skillName: LaserGun
     skillLevel: 1
-    skillPrefab: {fileID: 5334779351714054974, guid: df8ed6974e757d745ba74004e7fc1f07, type: 3}
     isTargetting: 1
+    skillPrefabs:
+    - {fileID: 5334779351714054974, guid: df8ed6974e757d745ba74004e7fc1f07, type: 3}
+    - {fileID: 5635817233598040511, guid: d9a985126cf1d774982b4cf00e089d60, type: 3}
+    - {fileID: 5635817233598040511, guid: 8336739b623cc364284635b7fa0e952f, type: 3}
+    - {fileID: 5635817233598040511, guid: 30aec1d2ace9dae498d5cfac5118102c, type: 3}
+    - {fileID: 5635817233598040511, guid: 785ae7d1640a4994ca59d0f66a84ce10, type: 3}
+    currentSkillObject: {fileID: 0}
   - skillName: LaserShotgun
     skillLevel: 1
-    skillPrefab: {fileID: 2584369925285779490, guid: 59786b4d759b4a049979785837c0d184, type: 3}
     isTargetting: 1
+    skillPrefabs:
+    - {fileID: 2584369925285779490, guid: 59786b4d759b4a049979785837c0d184, type: 3}
+    - {fileID: 8824100793671046475, guid: c0786ae33ece6b746b269003eaf3a595, type: 3}
+    - {fileID: 8824100793671046475, guid: 5442bedb7cdb2ed4c871cd964db7d609, type: 3}
+    - {fileID: 8824100793671046475, guid: 72e31d474b442ab4c91dfe452d0173f0, type: 3}
+    - {fileID: 8824100793671046475, guid: 4600be73fe587444285795a39020b691, type: 3}
+    currentSkillObject: {fileID: 0}
   - skillName: Missile
     skillLevel: 1
-    skillPrefab: {fileID: 1090985618923938403, guid: 579e39cf9f53ce2498b73af80aadbb18, type: 3}
     isTargetting: 0
+    skillPrefabs:
+    - {fileID: 1090985618923938403, guid: 579e39cf9f53ce2498b73af80aadbb18, type: 3}
+    - {fileID: 7089982967781281397, guid: 6ad790a3ce6a121499ca9ae79013a098, type: 3}
+    - {fileID: 7089982967781281397, guid: ad7fe74bd1dc28845bc1b581e03f81e5, type: 3}
+    - {fileID: 7089982967781281397, guid: f0880e110f610a74d85514e215bf26e4, type: 3}
+    - {fileID: 7089982967781281397, guid: 4ec7cba718401bc4a99b9d76c5dc012f, type: 3}
+    currentSkillObject: {fileID: 0}
 --- !u!58 &1966559059
 CircleCollider2D:
   m_ObjectHideFlags: 0

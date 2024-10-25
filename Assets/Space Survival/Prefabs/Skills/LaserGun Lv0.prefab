@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 296954407108347079}
   - component: {fileID: 3685939065368329188}
   m_Layer: 0
-  m_Name: LaserGun
+  m_Name: LaserGun Lv0
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -95,12 +95,12 @@ MonoBehaviour:
   projectilePrefab: {fileID: 2452495516228825841, guid: db241663d3ca96e46a92e22395dc25f2, type: 3}
   projPool: {fileID: 5104519442331596515}
   damage: 5
-  projectileSpeed: 10
+  projectileSpeed: 15
   projectileScale: 1
-  shotInterval: 1.5
-  projectileCount: 3
-  innerInterval: 0.16
-  pierceCount: 0
+  shotInterval: 3
+  projectileCount: 1
+  innerInterval: 0.5
+  pierceCount: 1
 --- !u!1 &8943305702896249439
 GameObject:
   m_ObjectHideFlags: 0

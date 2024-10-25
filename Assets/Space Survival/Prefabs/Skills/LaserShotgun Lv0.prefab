@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2539542278240352591}
   - component: {fileID: 8484319160948740174}
   m_Layer: 0
-  m_Name: LaserShotgun
+  m_Name: LaserShotgun Lv0
   m_TagString: Untagged
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -54,9 +54,9 @@ MonoBehaviour:
   projectileSpeed: 5
   projectileScale: 1
   shotInterval: 5
-  projectileCount: 5
-  innerInterval: 0
-  pierceCount: 0
+  projectileCount: 1
+  innerInterval: 0.5
+  pierceCount: 1
   shotPoints:
   - {fileID: 609638000875249256}
   - {fileID: 3926172174195299507}

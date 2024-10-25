@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
 
 		foreach (Skill skill in skills)
 		{
-			GameObject skillObj = Instantiate(skill.skillPrefab, transform, false); // 스킬 오브젝트 생성
+			GameObject skillObj = Instantiate(skill.skillPrefabs[skill.skillLevel], transform, false); // 스킬 오브젝트 생성
 			skillObj.name = skill.skillName;                                        // 오브젝트 이름 변경
 			skillObj.transform.localPosition = Vector2.zero;                        // 스킬 위치를 플레이어의 위치로 가져옴
 			if (skill.isTargetting)
@@ -269,5 +269,14 @@ public class Player : MonoBehaviour
 		// 3. 호출할 함수의 파라미터는 0개 또는 1개로 제한됨.
 		// 빠른 개발과 프로토타이핑에서 사용하기는 좋으나, 구조적으로 좋은 방식은 아니므로 팀원이 많은 개발팀이나 일정 규모 이상의 기업에서는 쓰지 않는 편
 		// 마지막 파라미터는 null 일때 무시할 건지 말건지 설정할 수 있다. 그래서 이렇게 최대 3개의 파라미터를 가질 수 있다.
+	}
+
+	// 파라미터로 넘어온 스킬의 레벨을 상승시키고, 다음 레벨의 프리팹으로 교체
+	public void OnSkillLevelUp(Skill skill)
+	{
+		if (skill.skillLevel >= skill.skillPrefabs.Length)
+		{
+
+		}
 	}
 }

@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
 
 	public new SpriteRenderer renderer;
 
-	public Animator tailfireAnimCtrl;
+	public Animator anim;
 
 	// 플레이어가 Fire 기능을 사용하는 대신 Skill들을 관리하여 공격 기능을 수행하도록
 	public List<Skill> skills;
@@ -59,7 +59,7 @@ public class Player : MonoBehaviour
 		moveSpeed = playerData.moveSpeed;
 		name = playerData.characterName;
 		renderer.sprite = playerData.sprite;
-		Instantiate(playerData.startSkillPrefab, transform, false);
+		//Instantiate(playerData.startSkillPrefab, fireDir, true);
 		// GameObject 활성화/비활성화 : SetActive(bool);
 		// Component 활성화/비활성화 : enabled = bool;
 		// 두 경우 모두 OnEnabled/OnDisabled 메시지 함수가 호출
@@ -98,7 +98,7 @@ public class Player : MonoBehaviour
 
 		//this.moveDir.gameObject.SetActive(moveDir != Vector2.zero);
 
-		tailfireAnimCtrl.SetBool("IsMoving", moveDir.magnitude > 0.1f);
+		anim.SetBool("IsMoving", moveDir.magnitude > 0.1f);
 
 		// 마우스 위치로 사격 방향을 향해야 할 때
 		//Vector2 mousePos = Input.mousePosition;
@@ -210,6 +210,7 @@ public class Player : MonoBehaviour
 	public void TakeDamage(float damage)
 	{
 		//print($"아야! : {damage}");
+		anim.SetTrigger("Hit");
 		if (damage < 0)
 		{
 			//TakeHeal(-damage);	// 대신 힐 하도록 처리

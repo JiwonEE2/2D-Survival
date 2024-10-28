@@ -2971,6 +2971,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 948ee860ebc498440851ca8c5fa7a371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerData: {fileID: 11400000, guid: b4a9c042527063241af292fd0655869c, type: 2}
   level: 0
   exp: 0
   hp: 100

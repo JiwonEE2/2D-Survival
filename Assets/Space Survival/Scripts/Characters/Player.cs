@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+	public PlayerDataSO playerData;
+
 	public int level = 0;   // 레벨
 	public int exp = 0;     // 경험치
 

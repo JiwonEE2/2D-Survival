@@ -57,6 +57,7 @@ MonoBehaviour:
   projectileCount: 1
   innerInterval: 0.5
   pierceCount: 1
+  fireAudioClip: {fileID: 8300000, guid: ccc95a5036e67324faa12e1b5183f73e, type: 3}
   shotPoints:
   - {fileID: 609638000875249256}
   - {fileID: 3926172174195299507}

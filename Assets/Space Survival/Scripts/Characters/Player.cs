@@ -221,6 +221,8 @@ public class Player : MonoBehaviour
 		{
 			// 게임 오버 처리
 			hp = 0;
+			//TODO:게임오버처리
+			GameManager.Instance.GameOver();
 		}
 	}
 

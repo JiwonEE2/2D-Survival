@@ -101,6 +101,7 @@ MonoBehaviour:
   projectileCount: 1
   innerInterval: 0.5
   pierceCount: 1
+  fireAudioClip: {fileID: 8300000, guid: ccc95a5036e67324faa12e1b5183f73e, type: 3}
 --- !u!1 &8943305702896249439
 GameObject:
   m_ObjectHideFlags: 0

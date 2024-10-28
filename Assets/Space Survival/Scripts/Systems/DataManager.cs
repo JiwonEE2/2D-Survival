@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DataManager : SingletonManager<DataManager>
 {
@@ -8,6 +9,8 @@ public class DataManager : SingletonManager<DataManager>
 	// 주로 정적 함수를 호출하여 기능 활용
 
 	public bool clearPrefsOnStart;
+
+	public int totalKillcount;
 
 	IEnumerator Start()
 	{
@@ -17,6 +20,14 @@ public class DataManager : SingletonManager<DataManager>
 		}
 		yield return null;  // 한 프레임 쉬고
 		OnLoad();
+		SceneManager.sceneLoaded += (scene, mode) =>  // 씬이 로드될 때마다 호출될 event
+		{
+			print($"씬 로드됨 : {scene.name}");
+			if (scene == SceneManager.GetSceneByName("GameScene"))
+			{
+				OnLoad();
+			}
+		};
 	}
 
 	// Load

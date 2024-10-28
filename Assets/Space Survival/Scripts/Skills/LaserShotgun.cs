@@ -35,5 +35,6 @@ public class LaserShotgun : LaserGun
 
 			LeanPool.Despawn(proj, proj.duration);
 		}
+		audioSource.PlayOneShot(fireAudioClip);
 	}
 }

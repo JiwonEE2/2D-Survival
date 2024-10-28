@@ -78,6 +78,7 @@ public class Enemy : MonoBehaviour
 
 		if (hp <= 0) //À¸¾Ó Áê±Ý
 		{
+			hp = 0;
 			Die();
 		}
 	}

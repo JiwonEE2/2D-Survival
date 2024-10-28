@@ -53,4 +53,9 @@ public class UIManager : SingletonManager<UIManager>
 		pausePanel = transform.Find("PausePanel")?.gameObject;
 		levelupPanel = transform.Find("LevelupPanel")?.GetComponent<SkillLevelupPanel>();
 	}
+
+	public void OnRestart()
+	{
+		Start();
+	}
 }

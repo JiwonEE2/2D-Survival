@@ -20,6 +20,12 @@ public class LaserGun : MonoBehaviour
 	[Tooltip("관통 횟수입니다\n무제한 관통을 원할 경우 0")]
 	public int pierceCount;             // 관통 횟수
 
+	protected AudioSource audioSource;
+	public AudioClip fireAudioClip;
+	protected virtual void Awake()
+	{
+		audioSource = gameObject.AddComponent<AudioSource>();
+	}
 	protected virtual void Start()
 	{
 		StartCoroutine(FireCoroutine());
@@ -68,5 +74,6 @@ public class LaserGun : MonoBehaviour
 		proj.pierceCount = pierceCount;
 
 		LeanPool.Despawn(proj, proj.duration);
+		audioSource.PlayOneShot(fireAudioClip);
 	}
 }

@@ -37,6 +37,9 @@ public class Player : MonoBehaviour
 	private Transform fireDir;
 
 	private Rigidbody2D rb;
+
+	public new SpriteRenderer renderer;
+
 	public Animator tailfireAnimCtrl;
 
 	// 플레이어가 Fire 기능을 사용하는 대신 Skill들을 관리하여 공격 기능을 수행하도록
@@ -51,6 +54,17 @@ public class Player : MonoBehaviour
 
 	void Start()
 	{
+		hp = playerData.hp;
+		damage = playerData.damage;
+		moveSpeed = playerData.moveSpeed;
+		name = playerData.characterName;
+		renderer.sprite = playerData.sprite;
+		Instantiate(playerData.startSkillPrefab, transform, false);
+		// GameObject 활성화/비활성화 : SetActive(bool);
+		// Component 활성화/비활성화 : enabled = bool;
+		// 두 경우 모두 OnEnabled/OnDisabled 메시지 함수가 호출
+		renderer.GetComponent<Rotater>().enabled = playerData.rotateRenderer;
+
 		maxHp = hp;   // 최대 체력 지정
 		currentMaxExp = levelupSteps[0];  // 최대 경험치
 

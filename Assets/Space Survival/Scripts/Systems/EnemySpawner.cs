@@ -15,6 +15,8 @@ public class EnemySpawner : MonoBehaviour
 	public GameObject enemyPrefab;      // 利 橇府普
 	public float spawnInterval;         // 积己 埃拜
 
+	public EnemyDataSO[] enemyDatas;
+
 	private void Start()
 	{
 		StartCoroutine(SpawnCoroutine());

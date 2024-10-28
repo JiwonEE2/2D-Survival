@@ -12,4 +12,7 @@ public class PlayerDataSO : ScriptableObject // 1. MonoBehaviour ´ë½Å Scriptable
 	public float hp;
 	public float damage;
 	public float moveSpeed;
+	public Sprite sprite;
+	public GameObject startSkillPrefab;
+	public bool rotateRenderer;
 }

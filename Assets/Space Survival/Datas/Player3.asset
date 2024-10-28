@@ -16,3 +16,6 @@ MonoBehaviour:
   hp: 200
   damage: 5
   moveSpeed: 3
+  sprite: {fileID: 21300000, guid: afca89737de2dfd4b9a0336470d3680d, type: 3}
+  startSkillPrefab: {fileID: 1090985618923938403, guid: 579e39cf9f53ce2498b73af80aadbb18, type: 3}
+  rotateRenderer: 1

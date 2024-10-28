@@ -2119,6 +2119,10 @@ MonoBehaviour:
   minMaxDist: {x: 3, y: 5}
   enemyPrefab: {fileID: 4430352534475327841, guid: 3ecc6a0b645e5ab408d6e230dfcf2b0d, type: 3}
   spawnInterval: 3
+  enemyDatas:
+  - {fileID: 11400000, guid: 35a38c4e4b052a64aa744ebaee744823, type: 2}
+  - {fileID: 11400000, guid: a644915a27a158648a68379d1272f15a, type: 2}
+  - {fileID: 11400000, guid: 93591cccded524a42b4ed7ee206cd146, type: 2}
 --- !u!1001 &1533898997
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2971,7 +2975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 948ee860ebc498440851ca8c5fa7a371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: b4a9c042527063241af292fd0655869c, type: 2}
+  playerData: {fileID: 11400000, guid: 4b5ffcf667ea53c4089de9f7b923178a, type: 2}
   level: 0
   exp: 0
   hp: 100
@@ -2979,6 +2983,7 @@ MonoBehaviour:
   moveSpeed: 5
   killCount: 0
   totalKillCount: 0
+  renderer: {fileID: 898185151}
   tailfireAnimCtrl: {fileID: 114880671}
   skills:
   - skillName: LaserGun

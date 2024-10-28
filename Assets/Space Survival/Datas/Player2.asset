@@ -16,3 +16,5 @@ MonoBehaviour:
   hp: 80
   damage: 10
   moveSpeed: 8
+  sprite: {fileID: 21300000, guid: b7ae18b2f3b543642b67f8759fee9c70, type: 3}
+  startSkillPrefab: {fileID: 2584369925285779490, guid: 59786b4d759b4a049979785837c0d184, type: 3}
